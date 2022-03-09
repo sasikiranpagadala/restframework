@@ -29,5 +29,6 @@ urlpatterns = [
 
     # using view sets
     path('api4/',include(router.urls)),
+    path('auth/',include('rest_framework.urls',namespace='rest_framework')),
     
 ]

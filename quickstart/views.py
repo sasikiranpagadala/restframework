@@ -8,6 +8,9 @@ from rest_framework.generics import GenericAPIView
 from rest_framework.mixins import ListModelMixin,CreateModelMixin,RetrieveModelMixin,UpdateModelMixin,DestroyModelMixin
 from rest_framework.generics import ListAPIView,CreateAPIView,RetrieveAPIView,UpdateAPIView,DestroyAPIView,ListCreateAPIView,RetrieveDestroyAPIView,RetrieveUpdateAPIView,RetrieveUpdateDestroyAPIView
 from rest_framework import viewsets
+#from rest_framework.authentication import BasicAuthentication
+from rest_framework.authentication import SessionAuthentication
+from rest_framework.permissions import IsAuthenticated,IsAdminUser
 
 # Create your views here.
 
@@ -111,3 +114,7 @@ class StudentRetriveUpdateDelete(RetrieveUpdateDestroyAPIView):
 class Studentviewset(viewsets.ModelViewSet):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
+    #authentication_classes = [BasicAuthentication]
+    authentication_classes = [SessionAuthentication]
+    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAdminUser]
